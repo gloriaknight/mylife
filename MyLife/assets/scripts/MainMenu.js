@@ -29,6 +29,35 @@ cc.Class({
     },
 
     newGameFunc: function () {
+        //todo tips:new game will override your current file
+        cc.warn("new game will override your current file");
+        //init player's basic info
+        cc.sys.localStorage.removeItem('userData');
+        cc.info(Math.random().toString(36).substr(2));
+        gameData.userData.playerInfo.playerName = Math.random().toString(36).substr(2);
+        gameData.userData.playerInfo.playerSex = "boy" + Math.random().toString(36).substr(2);
+        gameData.userData.playerInfo.playerAge = "11.5" + Math.random().toString(36).substr(2);
+        gameData.userData.playerInfo.playerGrade = "9";
+
+        gameData.userData.playerInfo.playerHp = 100;
+        gameData.userData.playerInfo.playerStr = 100;
+        gameData.userData.playerInfo.playerFame = 100;
+        gameData.userData.playerInfo.playerFrt = 100;
+        gameData.userData.playerInfo.playerSpi = 100;
+        gameData.userData.playerInfo.playerStd = 100;
+        gameData.userData.playerInfo.playerPhy = 100;
+
+        gameData.userData.playerInfo.playerLevel = 0;
+        gameData.userData.playerInfo.playerExp = 0;
+
+        gameData.userData.playerInfo.money = 30;
+
+        cc.sys.localStorage.setItem('userData', JSON.stringify(gameData));
+        cc.info(gameData);
+    },
+
+    /*
+    newGameFunc: function () {
         cc.info("################### Function Test");
         if (!cc.sys.isNative) {
             cc.error("not native!");
@@ -50,12 +79,18 @@ cc.Class({
         cc.sys.localStorage.setItem('userData', JSON.stringify(userData));
         cc.info("after set , userData form localStorage is " + JSON.parse(cc.sys.localStorage.getItem('userData')));
         cc.info("################### test end")
+        
     },
+    */
 
     continueFunc: function () {
-        cc.info("### test for global data");
-        gameData.userData.playerInfo.playerName = "fuckOff";
-        cc.info(gameData.userData.playerInfo.playerName);
+        //if item userData not exist , cannot continue
+        if (custTools.isEmpty(cc.sys.localStorage.getItem('userData'))) {
+            cc.error("item userData not exist , cannot continue");
+            return;
+        }
+        gameData = JSON.parse(cc.sys.localStorage.getItem('userData'));
+        cc.info(gameData);
     },
 
     settingsFunc: function () {

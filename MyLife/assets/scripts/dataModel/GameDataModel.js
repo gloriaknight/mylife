@@ -20,6 +20,9 @@ module.exports = {
  */
 function PlayerInfo() {
     this.playerName = "";
+    this.playerSex = "";
+    this.playerAge = "";
+    this.playerGrade = "";
     this.currentStatus = "";
     this.currentClass = "";
     this.currentTest = "";
