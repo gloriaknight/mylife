@@ -16,7 +16,7 @@ cc.Class({
         }
     },
 
-    initStatusPage() {
+    initStatusPage: function () {
         cc.info("enter player status page");
         //状态设置的两个layout，0：左边页  1：右边页
         var statusSettingPage = this.target.getComponent(cc.PageView).content._children[0].children;
@@ -28,7 +28,7 @@ cc.Class({
         var userData = gameData.userData.playerInfo;
         cc.info(userData);
 
-        //init playStatus
+        //init playerStatus
         for (var i = 0; i < playerStausPage.children.length; i++) {
             var node = playerStausPage.children[i];
             if (node.name == 'HP_label') {
@@ -55,25 +55,37 @@ cc.Class({
             else if (node.name == 'EXP_label') {
                 node.children[0].getComponent(cc.Label).string = userData.playerExp;
             }
+            else if (node.name == 'NAME_label') {
+                node.children[0].getComponent(cc.Label).string = userData.playerName;
+            }
+            else if (node.name == 'AGE_label') {
+                node.children[0].getComponent(cc.Label).string = userData.playerAge;
+            }
+            else if (node.name == 'SEX_label') {
+                node.children[0].getComponent(cc.Label).string = userData.playerSex;
+            }
+            else if (node.name == 'GRADE_label') {
+                node.children[0].getComponent(cc.Label).string = userData.playerGrade;
+            }
         }
         cc.info(playerStausPage.children);
     },
 
-    jumpToStatusSettings() {
+    jumpToStatusSettings: function () {
         this.target.scrollToPage(0);
     },
 
-    jumpToSkillSettings() {
+    jumpToSkillSettings: function () {
         this.target.scrollToPage(1);
     },
 
-    jumpToKnowledgeSettings() {
+    jumpToKnowledgeSettings: function () {
         this.target.scrollToPage(2);
     },
 
-    jumpToSocialSettings() {
+    jumpToSocialSettings: function () {
         this.target.scrollToPage(3);
-    },
+    }
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

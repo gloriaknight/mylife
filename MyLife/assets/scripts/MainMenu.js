@@ -1,6 +1,7 @@
 var custTools = require('CommonTools');
-var jsonFile = require('JsonFileHelper');
 var gameData = require('GameDataModel');
+const i18n = require('LanguageData');
+
 cc.Class({
     extends: cc.Component,
 
@@ -25,7 +26,17 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        var button = this.node.getComponent(cc.Button);
+        if (custTools.isEmpty(cc.sys.localStorage.getItem('i18n'))) {
+            cc.warn("use default language zh");
+            i18n.init('zh');
+        }else{
+            i18n.init(cc.sys.localStorage.getItem('i18n'));
+        }
+        var menuBtnGroup = this.node.getComponent(cc.Node);
+        this.btnNewGame.node.children[0].getComponent(cc.Label).string = i18n.t('label_text.newgame');
+        this.btnContinue.node.children[0].getComponent(cc.Label).string = i18n.t('label_text.continue');
+        this.btnSettings.node.children[0].getComponent(cc.Label).string = i18n.t('label_text.settings');
+        this.btnExit.node.children[0].getComponent(cc.Label).string = i18n.t('label_text.exit');
     },
 
     newGameFunc: function () {
@@ -53,6 +64,7 @@ cc.Class({
         gameData.userData.playerInfo.money = 30;
 
         cc.sys.localStorage.setItem('userData', JSON.stringify(gameData));
+        cc.sys.localStorage.setItem('i18n', 'en');
         cc.info(gameData);
     },
 
@@ -101,6 +113,8 @@ cc.Class({
     exitFunc: function () {
         cc.info("### clear localStorage ###");
         cc.sys.localStorage.clear();
+        i18n.init('en');
+        i18n.updateSceneRenderers();
     },
 
     // called every frame, uncomment this function to activate update callback
