@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "heroMoveUp",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 1,
+  "sample": 4,
+  "speed": 2,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "086828f6-6b43-4743-896a-0c76ac4534c7"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "b8f12094-6f62-439e-b804-a706a36cc9f4"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "e8875135-7626-4663-8f7d-692066702f23"
+            }
+          },
+          {
+            "frame": 0.75,
+            "value": {
+              "__uuid__": "c337a7fc-2e4c-45bb-bb63-cf0ada7a5a67"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

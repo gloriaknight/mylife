@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "heroMoveDown",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 1,
+  "sample": 4,
+  "speed": 2,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "19917790-8fb2-4dfb-8328-904b0a63650d"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "965bc9b6-5c06-47a7-bd12-3da3a1457f5f"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "2989fc01-502b-4679-a74f-9d3587523ef4"
+            }
+          },
+          {
+            "frame": 0.75,
+            "value": {
+              "__uuid__": "07fe3442-9677-4ce6-956c-f64858164481"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

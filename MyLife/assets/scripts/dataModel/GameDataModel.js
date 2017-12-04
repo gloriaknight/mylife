@@ -80,6 +80,8 @@ function UserData() {
     this.playerSkill = new PlayerSkill();
     this.playerInventory = new PlayerInventory();
     this.playerKnowledge = new PlayerKnowledge();
+    this.playerEventLog = {};
+    this.playerLastScene = "";
 };
 
 // TODO 2017/09/25 考虑玩家技能和课程知识点如何管理，是使用原生JavaScript的原型链来定义，还是使用cc.Class的extends来定义

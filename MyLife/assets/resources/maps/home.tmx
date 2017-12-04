@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="8" tileheight="8" nextobjectid="1">
+ <tileset firstgid="1" name="myblock" tilewidth="8" tileheight="8" tilecount="650" columns="13">
+  <image source="myblock.png" width="104" height="400"/>
+ </tileset>
+ <layer name="earth" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1TEOgCAQBED8liL/f5a9OZILBUKcYprNNlttPUqpAAAAi7peWpD1upGvdrSEke5sZ8JId7Y7YaQLQCzz27181T+Psh3/PMp2/PMo8+cAAADwTw92zlPW
+  </data>
+ </layer>
+ <layer name="furnitureDown" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztlckvQ1EUh9+TsGFFYkoMiWljhT3+CMOGhWGr2CqWWjMxj4nEsCOGFTXUioX6C0iwI8GOheFb3KbPS6uvTbxXyfmSL+fe0/tyfydt8zRNEARBEARBEATh/5Cpa1qWMsg66w21L9d/nk9nn4F5mG/6zEmKyFKsDLLLei9CxgL6hdjB2mVLwvg5IeepmsOP52FqD7odyhcPAbwOUz3odTCXmUGLv/Ej9P1pktgZIfsoruEsDuFwlHku8NKWdNZZIPMibuMOzuF8hDnu8N7kg21Jo3NIbi/68PiX7+IZX0y+2pLQOjMW/htjnBnHCZzET3pfWqj+F5bIvowruIqpmGaoiYDxvW1kk96W6mdTczA3QTKHI9J7e5/egeqXUEuxLMHmuMFbtTa+t42c0fOrfgW1EqvUvo5ajw3Y6OBsj/gU5cwV+QIqYzW1BmvVvoXaim3Y7uAcb/hu6g2Qx2Mxk4tzndiF3Q7OkczdKab7p9hPW8zk5lwv9mG/g3Po3J1kuv8jhuebeLZZD1VBEARBEARBEATBfr4BTSlRSg==
+  </data>
+ </layer>
+ <layer name="furnitureTop" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1bkNwkAUANF1BAVAAVAAdMURc8QclXDEHDFgCoBWoABImAZw4BW2jOZJE1kr/29LdgiSJEmSpLI0khCayffrKV0Lmya/Fju0M/a40b2wafLrsEM3Yw/91opnv6YNbSv8HnbMvqcDHSu8x4nZz3ShtMJ7SPpfD3pGnO/xbevTgIYlfude9I44P2L2MU1oWuIeNe5dj7j/jLNzWtDS/44kSZIkKcIHr00VjQ==
+  </data>
+ </layer>
+ <layer name="item" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztz7ERQEAQheE9BVAABVCZABkN6AStUAAV2eBiyR4r+L+ZN7fRzXsiAAAAAPBfIYhkms67iFGuG4pg+2NKU8Wk1A2VccecpopJrRsa4w68o9cM3iU+tsR3dW0BvG/zLoBHu+aId+tZxOjUXPEePYsAAAAAAAA3N1w0CNk=
+  </data>
+ </layer>
+ <layer name="maxTop" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt0zsOwyAQQEFyuThf222c3P8coUwRGRshgdGsNBXbPK0YTiEMAABAV27RubBLhY57lJppw87vXBvtWDrpeOloquPdSUcv/1yHjpyOecUn8f5Pi/fYe4ua99ChQ4eOI3Q8o0dhY4UOAACAXF8QGWvx
+  </data>
+ </layer>
+</map>
