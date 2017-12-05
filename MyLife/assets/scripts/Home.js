@@ -8,7 +8,7 @@ cc.Class({
     onLoad: function () {
         this.map = this.getComponent(cc.TiledMap);
         this.earth = this.map.getLayer("earth");
-        this.maxTop = this.map.getLayer("maxTop");
+        this.wallDown = this.map.getLayer("wallDown");
         this.item = this.map.getLayer("item");
         this.startTile = cc.p(16, 31);
     },
@@ -31,7 +31,7 @@ cc.Class({
 
     //[每个主场景控制器必须实现] 判断是否可以移动至tile
     tryMoveToNewTile: function (newTile) {
-        if (this.maxTop.getTileGIDAt(newTile)) {
+        if (this.wallDown.getTileGIDAt(newTile)) {
             console.log("this way is blocked");
             return false;
         }

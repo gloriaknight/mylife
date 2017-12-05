@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="8" tileheight="8" nextobjectid="1">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="8" tileheight="8" nextobjectid="1">
  <tileset firstgid="1" name="myblock" tilewidth="8" tileheight="8" tilecount="650" columns="13">
   <image source="myblock.png" width="104" height="400"/>
  </tileset>
  <layer name="earth" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1TEOgCAQBED8liL/f5a9OZILBUKcYprNNlttPUqpAAAAi7peWpD1upGvdrSEke5sZ8JId7Y7YaQLQCzz27181T+Psh3/PMp2/PMo8+cAAADwTw92zlPW
+   eJzt1bENgDAMRNGwFgT2H4sFjGS5sBLxitecrv/zGGMCAAAs6kqofLs9CZVvtzOh8u12J1S+AMQy3f7aV+15tO3Y82jbsefRpucAAADwTy8n6lPT
   </data>
  </layer>
  <layer name="furnitureDown" width="50" height="50">
@@ -23,9 +23,20 @@
    eJztz7ERQEAQheE9BVAABVCZABkN6AStUAAV2eBiyR4r+L+ZN7fRzXsiAAAAAPBfIYhkms67iFGuG4pg+2NKU8Wk1A2VccecpopJrRsa4w68o9cM3iU+tsR3dW0BvG/zLoBHu+aId+tZxOjUXPEePYsAAAAAAAA3N1w0CNk=
   </data>
  </layer>
- <layer name="maxTop" width="50" height="50">
+ <layer name="wallTop" width="50" height="50">
+  <properties>
+   <property name="barrier" value="true"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJzt0zsOwyAQQEFyuThf222c3P8coUwRGRshgdGsNBXbPK0YTiEMAABAV27RubBLhY57lJppw87vXBvtWDrpeOloquPdSUcv/1yHjpyOecUn8f5Pi/fYe4ua99ChQ4eOI3Q8o0dhY4UOAACAXF8QGWvx
+  </data>
+ </layer>
+ <layer name="wallDown" width="50" height="50">
+  <properties>
+   <property name="barrier" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1U0KgCAQQGG7XPZDubYu3LGyhSCSGCKMyRv4FomL3kJGD0ppAAAAAF1ZnLGySaBjda4M4/gJz+Nvb2604+ikwyY6UqQ6cmM/3Amn1Y6zkw5DBx10/L4j3m3PhLv87bzF/UFHWx0134bk+6CDjtq2gv/MzS7QAQAAAAClbgoEqas=
   </data>
  </layer>
 </map>
