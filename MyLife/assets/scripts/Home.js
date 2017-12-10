@@ -2,6 +2,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        // 像素误差修正值
+        errorPixel:0.0001
     },
 
     // use this for initialization
@@ -13,23 +15,23 @@ cc.Class({
         this.startTile = cc.p(16, 31);
     },
 
-    //[每个主场景控制器必须实现] 事件分发器
+    // [每个主场景控制器必须实现] 事件分发器
     eventCallBack: function () {
         console.log("fuck you!");
     },
 
-    //[每个主场景控制器必须实现] 获取主角初始位置：像素Position
+    // [每个主场景控制器必须实现] 获取主角初始位置：像素Position
     getStartPosition: function () {
         var pos = this.earth.getPositionAt(this.startTile)
         return pos;
     },
 
-    //[每个主场景控制器必须实现] 获取主角初始位置：tileMapPosition
+    // [每个主场景控制器必须实现] 获取主角初始位置：tileMapPosition
     getStartTilePos: function () {
         return this.startTile;
     },
 
-    //[每个主场景控制器必须实现] 判断是否可以移动至tile
+    // [每个主场景控制器必须实现] 判断是否可以移动至tile
     tryMoveToNewTile: function (newTile) {
         if (this.wallDown.getTileGIDAt(newTile)) {
             console.log("this way is blocked");
@@ -45,22 +47,44 @@ cc.Class({
         return true;
     },
 
-    //[每个主场景控制器必须实现] 移动人物至tile
-    moveToNewTile: function (newTile, role, time) {
+    // [每个主场景控制器必须实现] 移动人物至tile
+    moveToNewTile: function (newTile, role, time, direction) {
         var pos = this.earth.getPositionAt(newTile);
-        var moveAction = cc.moveTo(time, pos);
-        role.runAction(moveAction);
+        // 注册动作执行完毕之后，停止动画的回调
+        var finished = cc.callFunc(function (target, direction) {
+            role.node.emit('stopPlayAnimation', direction);
+            role.setIsMoving(false);
+        }, this, direction);
+        var moveAction = cc.sequence(cc.moveTo(time, pos), finished);
+        role.setIsMoving(true);
+        role.node.runAction(moveAction);
     },
 
     //
-    isMovedToTile: function (posInPixes, targetTile) {
+    isMovedToTile: function (posInPixes, targetTile, direction) {
         var mapSize = this.node.getContentSize();
         var tileSize = this.map.getTileSize();
-        var x = Math.round(posInPixes.x / tileSize.width);
-        var y = Math.round((mapSize.height - posInPixes.y) / tileSize.height) - 1;
-        if (x == targetTile.x && y == targetTile.y){
-            return true;
+        var errorPixelFix = this.errorPixel;
+        var x = 0;
+        var y = 0;
+        // 判断当前人物的行走方向，用来修正坐标像素误差，向上向左时负修正，向下向右时正修正
+        if (direction == "Up" || direction == "Left"){
+            errorPixelFix = -this.errorPixel;
+            // 向上向左时向上取整
+            x = Math.ceil((posInPixes.x + errorPixelFix) / tileSize.width);
+            y = Math.ceil((mapSize.height - posInPixes.y + errorPixelFix) / tileSize.height) - 1;
         }else{
+            // 向下向右时向下取整
+            x = Math.floor((posInPixes.x + errorPixelFix) / tileSize.width);
+            y = Math.floor((mapSize.height - posInPixes.y + errorPixelFix) / tileSize.height) - 1;
+        }
+        
+        if (x == targetTile.x && y == targetTile.y) {
+            console.log("yes , moved to tile");
+            console.log(posInPixes);
+            console.log(targetTile);
+            return true;
+        } else {
             return false;
         }
     },

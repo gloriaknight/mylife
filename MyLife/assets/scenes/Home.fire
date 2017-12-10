@@ -698,7 +698,9 @@
     "map": {
       "__id__": 21
     },
-    "controllerName": "Home"
+    "controllerName": "Home",
+    "isMoving": false,
+    "currentDirection": "Down"
   },
   {
     "__type__": "cc.TiledMap",
@@ -719,7 +721,8 @@
     "node": {
       "__id__": 3
     },
-    "_enabled": true
+    "_enabled": true,
+    "errorPixel": 0.0001
   },
   {
     "__type__": "cc.Canvas",
