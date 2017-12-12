@@ -23,20 +23,20 @@
    eJztz7ERQEAQheE9BVAABVCZABkN6AStUAAV2eBiyR4r+L+ZN7fRzXsiAAAAAPBfIYhkms67iFGuG4pg+2NKU8Wk1A2VccecpopJrRsa4w68o9cM3iU+tsR3dW0BvG/zLoBHu+aId+tZxOjUXPEePYsAAAAAAAA3N1w0CNk=
   </data>
  </layer>
- <layer name="wallTop" width="50" height="50">
-  <properties>
-   <property name="barrier" value="true"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0zsOwyAQQEFyuThf222c3P8coUwRGRshgdGsNBXbPK0YTiEMAABAV27RubBLhY57lJppw87vXBvtWDrpeOloquPdSUcv/1yHjpyOecUn8f5Pi/fYe4ua99ChQ4eOI3Q8o0dhY4UOAACAXF8QGWvx
-  </data>
- </layer>
  <layer name="wallDown" width="50" height="50">
   <properties>
    <property name="barrier" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1U0KgCAQQGG7XPZDubYu3LGyhSCSGCKMyRv4FomL3kJGD0ppAAAAAF1ZnLGySaBjda4M4/gJz+Nvb2604+ikwyY6UqQ6cmM/3Amn1Y6zkw5DBx10/L4j3m3PhLv87bzF/UFHWx0134bk+6CDjtq2gv/MzS7QAQAAAAClbgoEqas=
+   eJzt1U0KgCAQQOG6XPZDubYu3LFyI4gkZigj8ga+heLmLWTUOAwKAAAAQFdWaypsFujYrDtBW278+/DsLI12nJ10mEhHjFRHasyHN/602nF10pE7dNTt0JmtdNAR7g83/i5/u29xf9DRVkfJvyH5P+igo7S9Qsch0AEAAAAAfz1g76lb
+  </data>
+ </layer>
+ <layer name="wallTop" width="50" height="50">
+  <properties>
+   <property name="barrier" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1E0OwiAQgNH2cuJf1W1N738OWbowUhoiFN8kb8VsvkxCGIchAAAAXTlHh8KOFTouUWruK3be59Rox7OTjrmTjtzRoeOf/isdv+14fLEk3j9p8R65t6h5Dx06dOjYQ8cUXQu7VegAAADY6gVgPGrr
   </data>
  </layer>
 </map>

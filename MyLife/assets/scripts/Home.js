@@ -17,7 +17,7 @@ cc.Class({
 
     // [每个主场景控制器必须实现] 事件分发器
     eventCallBack: function () {
-        console.log("fuck you!");
+        console.log("got event : fuck you!");
     },
 
     // [每个主场景控制器必须实现] 获取主角初始位置：像素Position
@@ -60,7 +60,7 @@ cc.Class({
         role.node.runAction(moveAction);
     },
 
-    //
+    // [每个主场景控制器必须实现] 判断是否已经移动到指定的图块
     isMovedToTile: function (posInPixes, targetTile, direction) {
         var mapSize = this.node.getContentSize();
         var tileSize = this.map.getTileSize();
@@ -80,9 +80,6 @@ cc.Class({
         }
         
         if (x == targetTile.x && y == targetTile.y) {
-            console.log("yes , moved to tile");
-            console.log(posInPixes);
-            console.log(targetTile);
             return true;
         } else {
             return false;
