@@ -1,0 +1,10 @@
+{
+	"skill_1": {
+		"skillType": "study",
+		"skillName": "speedUp",
+		"requiredExp": "100"
+	},
+	"skill_2": {
+		
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"dad": {
+		"name": "father",
+		"age": "40",
+		"sex": "male"
+	},
+	"mom": {
+		"name": "mother",
+		"age": "40",
+		"sex": "female"
+	}
+}

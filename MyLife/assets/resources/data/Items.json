@@ -1,0 +1,9 @@
+{
+	"Items": {
+		"schoolBag": {
+			"itemType": "backpack",
+			"itemName": "schoolBag",
+			"itemClass": "white"
+		}
+	}
+}

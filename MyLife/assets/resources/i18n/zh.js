@@ -7,5 +7,13 @@ window.i18n.languages.zh = {
         "continue": "继续",
         "settings": "设置",
         "exit": "退出"
-    }
+    },
+	"item_name":{
+		"book":"书本",
+		"schoolBag":"书包"
+	},
+	"npc_name":{
+		"father":"爸爸",
+		"mother":"妈妈"
+	}
 };

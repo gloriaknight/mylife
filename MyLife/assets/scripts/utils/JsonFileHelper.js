@@ -1,4 +1,5 @@
-//加载用户Json数据文件，加载完毕之后通过回调把结果返回给调用方
+// 加密存储后面再说吧，考虑和Steam的API一起集成
+// 加载用户Json数据文件，加载完毕之后通过回调把结果返回给调用方
 function loadJsonFromFile(file , callback){
     var fileUri = cc.url.raw(file);
     cc.loader.load(fileUri , function(err , res){

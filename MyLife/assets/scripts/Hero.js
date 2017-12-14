@@ -202,7 +202,7 @@ cc.Class({
     // 碰撞回调：持续碰撞
     onCollisionStay: function (other, self) {
         // 其实在检测到碰撞时，回调函数已经保证了不在移动，这里做一层保护
-
+        
     },
 
     // 碰撞回调：离开碰撞

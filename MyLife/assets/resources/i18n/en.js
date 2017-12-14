@@ -7,5 +7,13 @@ window.i18n.languages.en = {
         "continue": "Continue",
         "settings": "Settings",
         "exit": "Exit"
-    }
+    },
+	"item_name":{
+		"book":"Book",
+		"schoolBag":"School Bag"
+	},
+	"npc_name":{
+		"father":"Dad",
+		"mother":"Mom"
+	}
 };
