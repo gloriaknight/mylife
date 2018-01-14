@@ -1,0 +1,25 @@
+{
+    "0001":{
+        "parentNode":["-1"],
+        "childNode":["0002","0003"]
+    },
+    "0002":{
+        "parentNode":["0001"],
+        "childNode":["0004"]
+    },
+    "0003":{
+        "parentNode":["0001"],
+        "childNode":["0005"]
+    },
+    "0004":{
+        "parentNode":["0002"],
+        "childNode":["0006"]
+    },
+    "0005":{
+        "parentNode":["0003"],
+        "childNode":["0006"]
+    },
+    "0006":{
+        "parentNode":["0004","0005"]
+    }
+}

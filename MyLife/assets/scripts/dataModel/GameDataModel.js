@@ -19,14 +19,21 @@ module.exports = {
  * 玩家信息类
  */
 function PlayerInfo() {
+    // 基本信息
     this.playerName = "";
     this.playerSex = "";
     this.playerAge = "";
     this.playerGrade = "";
+
+    // 剧情相关
     this.currentStatus = "";
     this.currentClass = "";
     this.currentTest = "";
     this.money = "";
+    this.currentStoryNode = "";
+    this.storyNodeList = [];
+
+    // 玩家属性
     this.playerLevel = "";
     this.playerExp = "";
     this.playerHp = "";
@@ -36,6 +43,7 @@ function PlayerInfo() {
     this.playerSpi = "";
     this.playerStd = "";
     this.playerPhy = "";
+    
 };
 
 /**

@@ -5,7 +5,7 @@ cc.Class({
 
     properties: {
         animName: '',
-        canMove: true,
+        isPause: true,
         speed: Number,
         tileSize: 8,
         // 场景的主地图节点
@@ -24,11 +24,13 @@ cc.Class({
         this.leftSpeed = 0;
         this.rightSpeed = 0;
 
+        // 主角当前各方向碰撞判断移动锁
         this.upLock = false;
         this.downLock = false;
         this.leftLock = false;
         this.rightLock = false;
 
+        // 设置碰撞判断参数，节点归属组为人物组
         this.node.group = "Role"
         var collider = cc.director.getCollisionManager();
         collider.enabled = true;
@@ -37,12 +39,13 @@ cc.Class({
         // 拿到游戏控制组件
         this.gameControll = this.map.getComponent(this.controllerName);
         // 添加人物控制监听
+        this.directionStack = [];
         this.setInputControl();
         // TODO 拿到人物初始位置
         this.playerTile = this.startTile = this.gameControll.getStartTilePos();
         this.node.setPosition(this.gameControll.getStartPosition());
-        // 人物当前的移动方向，使用数字代表，便于switch方法 上：0 下：1 左：2 右：3
-        this.currentDirection = 1;
+        // 人物当前的移动方向，用于碰撞判断和动画播放
+        this.currentDirection = "Down";
 
     },
 
@@ -52,87 +55,22 @@ cc.Class({
         // 添加键盘事件监听
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD,
-            // 有按键按下时，判断是否是我们指定的方向控制键，并设置向对应方向速度
+            // 有按键按下时，判断当前方向按键队列里是否有此按键，如果没有则插入队列头
             onKeyPressed: function (keyCode, event) {
-                var direction = null;
-                switch (keyCode) {
-                    case cc.KEY.up:
-                        console.log("press up");
-                        if (!self.upLock) {
-                            self.upSpeed = self.speed;
-                            self.downSpeed = 0;
-                            self.leftSpeed = 0;
-                            self.rightSpeed = 0;
-                            self.currentDirection = 0;
-                        }
-                        direction = "Up";
-                        break;
-                    case cc.KEY.down:
-                        console.log("press down");
-                        if (!self.downLock) {
-                            self.downSpeed = -self.speed;
-                            self.upSpeed = 0;
-                            self.leftSpeed = 0;
-                            self.rightSpeed = 0;
-                            self.currentDirection = 1;
-                        }
-                        direction = "Down";
-                        break;
-                    case cc.KEY.left:
-                        console.log("press left");
-                        if (!self.leftLock) {
-                            self.leftSpeed = -self.speed;
-                            self.upSpeed = 0
-                            self.downSpeed = 0;
-                            self.rightSpeed = 0;
-                            self.currentDirection = 2;
-                        }
-                        direction = "Left";
-                        break;
-                    case cc.KEY.right:
-                        console.log("press right");
-                        if (!self.rightLock) {
-                            self.rightSpeed = self.speed;
-                            self.upSpeed = 0
-                            self.downSpeed = 0;
-                            self.leftSpeed = 0;
-                            self.currentDirection = 3;
-                        }
-                        direction = "Right";
-                        break;
+                if (keyCode == cc.KEY.up || keyCode == cc.KEY.down || cc.KEY.left || cc.KEY.right) {
+                    if (self.directionStack.indexOf(keyCode) == -1) {
+                        self.directionStack.unshift(keyCode);
+                    }
                 }
-                self.playerMoveAction(direction);
             },
-            // 松开按键时，注册停止播放动画的事件，当某方向的动画播放完毕之后，回调停止播放动画事件
+            // 松开按键时，判断当前方向按键队列里是否有此按键，如果有则剔除
             onKeyReleased: function (keyCode, event) {
                 var direction = null;
-                switch (keyCode) {
-                    case cc.KEY.up:
-                        if (self.upSpeed != 0) {
-                            self.upSpeed = 0;
-                        }
-                        direction = "Up";
-                        break;
-                    case cc.KEY.down:
-                        if (self.downSpeed != 0) {
-                            self.downSpeed = 0;
-                        }
-                        direction = "Down";
-                        break;
-                    case cc.KEY.left:
-                        if (self.leftSpeed != 0) {
-                            self.leftSpeed = 0;
-                        }
-                        direction = "Left";
-                        break;
-                    case cc.KEY.right:
-                        if (self.rightSpeed != 0) {
-                            self.rightSpeed = 0;
-                        }
-                        direction = "Right";
-                        break;
+                if (keyCode == cc.KEY.up || keyCode == cc.KEY.down || cc.KEY.left || cc.KEY.right) {
+                    if (self.directionStack.indexOf(keyCode) != -1) {
+                        self.directionStack.splice(self.directionStack.indexOf(keyCode), 1);
+                    }
                 }
-                self.playerStopAction(direction);
             }
         }, self.node);
     },
@@ -142,28 +80,28 @@ cc.Class({
         // 如果是墙体组件，不能通过
         if (other.node.group == "Wall") {
             switch (this.currentDirection) {
-                case 0:
+                case "Up":
                     this.upSpeed = 0;
                     this.upLock = true;
                     this.downLock = false;
                     this.leftLock = false;
                     this.rightLock = false;
                     break;
-                case 1:
+                case "Down":
                     this.downSpeed = 0;
                     this.upLock = false;
                     this.downLock = true;
                     this.leftLock = false;
                     this.rightLock = false;
                     break;
-                case 2:
+                case "Left":
                     this.leftSpeed = 0;
                     this.upLock = false;
                     this.downLock = false;
                     this.leftLock = true;
                     this.rightLock = false;
                     break;
-                case 3:
+                case "Right":
                     this.rightSpeed = 0;
                     this.upLock = false;
                     this.downLock = false;
@@ -194,7 +132,7 @@ cc.Class({
             // 将计算出的世界坐标转换为节点的本地坐标
             point = this.node.parent.convertToNodeSpaceAR(point);
             // 更新节点位置
-            this.node.setPosition(cc.pAdd(point , cc.p(4, 0)));
+            this.node.setPosition(cc.pAdd(point, cc.p(4, 0)));
         }
         console.log("this is hero collision end");
     },
@@ -202,7 +140,7 @@ cc.Class({
     // 碰撞回调：持续碰撞
     onCollisionStay: function (other, self) {
         // 其实在检测到碰撞时，回调函数已经保证了不在移动，这里做一层保护
-        
+
     },
 
     // 碰撞回调：离开碰撞
@@ -221,7 +159,7 @@ cc.Class({
         this.playerMoveAction(direction);
     },
 
-    //移动动作
+    // 移动动作
     playerMoveAction: function (direction) {
         var anim = this.node.getComponent(cc.Animation);
         var animState = anim.getAnimationState(this.animName + "Move" + direction);
@@ -242,10 +180,83 @@ cc.Class({
 
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
-        // 根据当前速度更新主角的位置
-        this.node.y += this.upSpeed * dt;
-        this.node.y += this.downSpeed * dt;
-        this.node.x += this.leftSpeed * dt;
-        this.node.x += this.rightSpeed * dt;
+        // 如果当前方向队列里面有值，则取最队列最顶端元素进行处理
+        if (this.directionStack.length > 0) {
+            var currentDirectionKey = this.directionStack[0];
+            var canMove = false;
+
+            switch (currentDirectionKey) {
+                case cc.KEY.up: case cc.KEY.w:
+                    // 设置当前方向，松开按键后，该值即为最后一次设置的值
+                    this.currentDirection = "Up";
+                    // 调用场景主控制器，判断是否可以移动至该方向
+                    canMove = this.gameControll.tryMoveToDirection(this.currentDirection, this.speed * dt);
+                    // 如果碰撞判断逻辑块中判定该方向无法移动，则锁定加速度
+                    if (canMove) {
+                        this.upSpeed = this.speed;
+                        this.downSpeed = 0;
+                        this.leftSpeed = 0;
+                        this.rightSpeed = 0;
+                    }
+                    break;
+                case cc.KEY.down: case cc.KEY.s:
+                    // 设置当前方向，松开按键后，该值即为最后一次设置的值
+                    this.currentDirection = "Down";
+                    // 调用场景主控制器，判断是否可以移动至该方向
+                    canMove = this.gameControll.tryMoveToDirection(this.currentDirection, this.speed * dt);
+                    // 如果碰撞判断逻辑块中判定该方向无法移动，则锁定加速度
+                    if (canMove) {
+                        this.upSpeed = 0;
+                        this.downSpeed = -this.speed;
+                        this.leftSpeed = 0;
+                        this.rightSpeed = 0;
+                    }
+                    break;
+                case cc.KEY.left: case cc.KEY.a:
+                    // 设置当前方向，松开按键后，该值即为最后一次设置的值
+                    this.currentDirection = "Left";
+                    // 调用场景主控制器，判断是否可以移动至该方向
+                    canMove = this.gameControll.tryMoveToDirection(this.currentDirection, this.speed * dt);
+                    // 如果碰撞判断逻辑块中判定该方向无法移动，则锁定加速度
+                    if (canMove) {
+                        this.upSpeed = 0;
+                        this.downSpeed = 0;
+                        this.leftSpeed = -this.speed;
+                        this.rightSpeed = 0;
+                    }
+                    break;
+                case cc.KEY.right: case cc.KEY.d:
+                    // 设置当前方向，松开按键后，该值即为最后一次设置的值
+                    this.currentDirection = "Right";
+                    // 调用场景主控制器，判断是否可以移动至该方向
+                    canMove = this.gameControll.tryMoveToDirection(this.currentDirection, this.speed * dt);
+                    // 如果碰撞判断逻辑块中判定该方向无法移动，则锁定加速度
+                    if (canMove) {
+                        this.upSpeed = 0;
+                        this.downSpeed = 0;
+                        this.leftSpeed = 0;
+                        this.rightSpeed = this.speed;
+                    }
+                    break;
+            }
+
+            // 根据当前速度更新主角的位置
+            this.node.y += this.upSpeed * dt;
+            this.node.y += this.downSpeed * dt;
+            this.node.x += this.leftSpeed * dt;
+            this.node.x += this.rightSpeed * dt;
+
+            this.upSpeed = 0;
+            this.downSpeed = 0;
+            this.leftSpeed = 0;
+            this.rightSpeed = 0;
+
+            // 行走动画回调
+            this.playerMoveAction(this.currentDirection);
+        } else {
+            // 停止动画回调
+            this.playerStopAction(this.currentDirection);
+        }
+
     },
 });

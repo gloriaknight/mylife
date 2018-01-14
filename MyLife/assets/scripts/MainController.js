@@ -53,6 +53,9 @@ cc.Class({
 
         gameData.userData.playerInfo.money = 30;
 
+        gameData.userData.playerInfo.currentStroyNode = "0001";
+        gameData.userData.playerInfo.storyNodeList = ["0001"];
+
         cc.sys.localStorage.setItem('userData', JSON.stringify(gameData));
         cc.sys.localStorage.setItem('i18n', 'en');
         cc.info(gameData);
@@ -103,6 +106,16 @@ cc.Class({
                 // AJAX异步调用加载缓存
                 var str = JSON.stringify(res);
                 self.npcCacheInitor(str);
+            }
+        });
+
+        // 4 读取剧情线到内存中
+        cc.loader.load(cc.url.raw('resources/storyscripts/storyLine.json'), function(err, res){
+            if (err) {
+                console.log(err);
+            }else{
+                // AJAX异步调用加载缓存
+                self.storyLine = res;
             }
         });
 
