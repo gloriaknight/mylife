@@ -80,14 +80,29 @@ cc.Class({
 
     // [有剧情线的主场景控制器按需实现] 富文本展示（立绘）
     showRichText: function (nodeName, showText) {
-        // 获取对应角色的属性，新建立绘sprite
+        // 获取对应角色节点，新建立绘sprite
         var node = this.node.getChildByName(nodeName);
 
-        // 去国家化文件中，获取实际展示的字符串
-        var showStr = i18n.t(showText)
+        // 去国际化文件中，获取实际展示的字符串
+        var showStr = i18n.t(showText);
 
         // 根据上面拿到的数据绘制UI。等待UI统一设计完成
         console.log("RolePaint:" + node.name + " ShowText:" + showStr);
+
+        // 等待用户输入，才进行下一个剧情函数，放在update函数中判定，如果当前在剧情中，并且用户按下了空格键，执行下一个脚本。解析到其他类型脚本时，置为false
+        this.isInTextStory = true;
+    },
+
+    // [有剧情线的主场景控制器必须实现] 人物头顶展示文本
+    showAboveHeadText: function (nodeName, showText) {
+        // 获取对应角色节点，根据角色节点位置，计算出头顶位置，绘制对话框
+        var node = this.node.getChildByName(nodeName);
+
+        // 去国际化文件中，获取实际展示的字符串
+        var showStr = i18n.t(showText);
+
+        // 根据上面拿到的数据绘制UI。等待UI统一设计完成
+        console.log("AboveHead:" + node.name + " ShowText:" + showStr);
 
         // 等待用户输入，才进行下一个剧情函数，放在update函数中判定，如果当前在剧情中，并且用户按下了空格键，执行下一个脚本。解析到其他类型脚本时，置为false
         this.isInTextStory = true;
@@ -195,8 +210,8 @@ cc.Class({
         return position;
     },
 
-    story0001Init: function () {
-        console.log("Initing Story0001...");
+    story0001Init: function (params) {
+        console.log("Initing Story0001..." + params);
     },
 
     // called every frame, uncomment this function to activate update callback

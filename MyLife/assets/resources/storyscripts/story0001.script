@@ -1,3 +1,4 @@
+Script Home.story0001Init ()
 GETROLE mother ShowText (richText,messages.home_mother_001)
 GETROLE hero ShowText (richText,messages.home_hero_001)
 GETROLE mother MoveToObject (hero,left,right)
@@ -7,6 +8,6 @@ GETROLE mother ShowText (richText,messages.home_mother_003)
 GETROLE hero ShowText (richText,messages.home_hero_003)
 GETROLE mother ShowText (richText,messages.home_mother_004)
 GETROLE hero ShowText (richText,messages.home_hero_004)
-GETROLE mother ShowText (richText,messages.home_mother_005)
-GETROLE hero ShowText (richText,messages.home_hero_005)
+GETROLE mother ShowText (aboveHead,messages.home_mother_005)
+GETROLE hero ShowText (aboveHead,messages.home_hero_005)
 

@@ -52,6 +52,9 @@ cc.Class({
 
     // 解析剧情脚本，分发给各个具体实现函数
     parseStoryScript: function () {
+        if (custTools.isEmpty(this.storyScriptLines[this.currentStoryScriptIndex])) {
+            return;
+        }
         // 调用当前剧情节点的剧情脚本，等待处理由具体函数处理
         var elements = this.storyScriptLines[this.currentStoryScriptIndex].trim().split(" ");
         // elements各字段含义参照《剧情脚本命令格式.xlsx》
@@ -60,6 +63,18 @@ cc.Class({
             // 文本展示 ShowText [showType,showText]
             if (elements[2] == "ShowText") {
                 this.nodeShowTextFunc(elements[1], elements[3]);
+            }
+
+            // 
+        }
+
+        if (elements[0] == "Script") {
+            // 根据函数名调用脚本
+            var methods = elements[1].split(".");
+            var methodName = "this.scene.getComponent(\"" + methods[0] + "\")." + methods[1];
+            var params = elements[2];
+            if (typeof (eval(methodName)) == "function") {
+                eval(methodName + "(" + params.split("(")[1].split(")")[0] + ");");
             }
         }
 
@@ -80,7 +95,7 @@ cc.Class({
         if (showType == "richText") {
             this.gameControll.showRichText(nodeName, showText);
         } else if (showType == "aboveHead") {
-
+            this.gameControll.showAboveHeadText(nodeName, showText);
         }
 
     },
