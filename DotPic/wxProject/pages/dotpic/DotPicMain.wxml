@@ -1,0 +1,76 @@
+<view class="container">
+    <!--
+    <view class="page-section page-section-gap">
+        <view class="page-section-title">画布大小</view>
+        <radio-group name="radio">
+            <label>
+                <radio value="16" bindtap='changeCanvasSize' data-gridNum="16" checked="true" />16*16</label>
+            <label>
+                <radio value="32" bindtap='changeCanvasSize' data-gridNum="32" />32*32</label>
+            <label>
+                <radio value="64" bindtap='changeCanvasSize' data-gridNum="64" />64*64</label>
+        </radio-group>
+    </view>
+    -->
+    <view class="page-section page-section-gap ">
+        <view class="page-section-title ">是否显示网格</view>
+        <radio-group name="gridChooseRadio">
+            <label>
+                <radio value="true" />是</label>
+            <label>
+                <radio value="false" />否</label>
+        </radio-group>
+        <radio-group name="pencilChooseRadio">
+            <label>
+                <radio value="true" />铅笔</label>
+            <label>
+                <radio value="false" />油漆桶</label>
+        </radio-group>
+        <view>
+            <button class="mini-btn" type="primary" size="mini" bindtap='undo'>撤销</button>
+            <button bindtap="dot">DOT</button>
+            <button class="mini-btn" type="primary" size="mini" bindtap='redo'>重做</button>
+            <button bindtap="savePic" type="primary" size="mini">保存图片</button>
+
+        </view>
+
+    </view>
+    <view class="page-body">
+        <view class="page-body-wrapper">
+
+            <canvas canvas-id="canvas" class="canvas" bindtouchstart="dot">
+
+                <cover-view wx:for="{{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}}" wx:for-item="i">
+                    <cover-view style="width:100%;height:1px;background:#ff0000;top:{{i * 19.0625}}px;position:absolute"></cover-view>
+                    <cover-view style="width:1px;height:100%;background:#ff0000;left:{{i * 19.0625}}px;position:absolute"></cover-view>
+                </cover-view>
+
+
+            </canvas>
+
+        </view>
+    </view>
+
+    <view class='canvas-tools'>
+        <view class="tool pen-red" bindtap="changeColor" data-color="#FF0000"></view>
+        <view class="tool pen-aqua" bindtap="changeColor" data-color="#00FFFF"></view>
+        <view class="tool pen-black" bindtap="changeColor" data-color="#000000"></view>
+        <view class="tool pen-blue" bindtap="changeColor" data-color="#0000FF"></view>
+        <view class="tool pen-fuchsia" bindtap="changeColor" data-color="#FF00FF"></view>
+        <view class="tool pen-gray" bindtap="changeColor" data-color="#808080"></view>
+        <view class="tool pen-green" bindtap="changeColor" data-color="#008000"></view>
+        <view class="tool pen-lime" bindtap="changeColor" data-color="#00FF00"></view>
+        <view class="tool pen-maroon" bindtap="changeColor" data-color="#800000"></view>
+        <view class="tool pen-navy" bindtap="changeColor" data-color="#000080"></view>
+        <view class="tool pen-olive" bindtap="changeColor" data-color="#808000"></view>
+        <view class="tool pen-purple" bindtap="changeColor" data-color="#800080"></view>
+        <view class="tool pen-silver" bindtap="changeColor" data-color="#C0C0C0"></view>
+        <view class="tool pen-teal" bindtap="changeColor" data-color="#008080"></view>
+        <view class="tool pen-white" bindtap="changeColor" data-color="#FFFFFF"></view>
+        <view class="tool pen-yellow" bindtap="changeColor" data-color="#FFFF00"></view>
+    </view>
+
+
+
+
+</view>

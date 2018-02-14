@@ -1,0 +1,84 @@
+/* pages/dotpic/DotPicMain.wxss */
+
+.canvas {
+    width: 305px;
+    height: 305px;
+    background-color: #fff;
+
+}
+.canvas-tools {
+    width: 100%;
+    
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.tool {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+button{
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+.button-sp-area{
+  margin: 0 auto;
+  width: 60%;
+}
+.mini-btn{
+  margin-right: 10rpx;
+}
+
+.pen-red {
+    background-color: red;
+}
+
+.pen-aqua {
+    background-color: aqua;
+}
+.pen-black {
+    background-color: black;
+}
+.pen-blue {
+    background-color: blue;
+}
+.pen-fuchsia {
+    background-color: fuchsia;
+}
+.pen-gray {
+    background-color: gray;
+}
+.pen-green {
+    background-color: green;
+}
+.pen-lime {
+    background-color: lime;
+}
+.pen-maroon {
+    background-color: maroon;
+}
+.pen-navy {
+    background-color: navy;
+}
+.pen-olive {
+    background-color: olive;
+}
+.pen-purple {
+    background-color: purple;
+}
+.pen-silver {
+    background-color: silver;
+}
+.pen-teal {
+    background-color: teal;
+}
+.pen-white {
+    background-color: white;
+}
+.pen-yellow {
+    background-color: yellow;
+}

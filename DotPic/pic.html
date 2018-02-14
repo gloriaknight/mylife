@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>像素画</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            margin: 0 auto;
+            width: 750px;
+            border: 1px solid #000;
+        }
+
+        .side {
+            width: 750px;
+            height: 60px;
+            line-height: 60px;
+            border-bottom: 1px solid #000;
+        }
+
+        #main {
+            width: 750px;
+            height: auto;
+            text-align: center;
+        }
+
+        #colorBar {
+            margin-left: 40px;
+            border: 1px solid #000;
+            background-color: #F00;
+        }
+
+        #iTable,
+        #tb {
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        #iTable {
+            border: 1px solid #999;
+        }
+
+        #tb td {
+            border: 1px solid #000;
+            width: 8px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        #iTable td {
+            border: 1px solid #999;
+            width: 12px;
+            height: 12px;
+            overflow: hidden;
+        }
+
+        #box {
+            margin: 42px auto 0;
+            text-align: left;
+        }
+
+        .input1 {
+            padding: 5px;
+            width: 68px;
+            height: 31px;
+            text-align: center;
+        }
+
+        #HashInfo {
+            width: 60%;
+            height: 60px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+        <div class="side">
+            <input type="text" id="colorBar" />
+            <input type="button" class="input1" value="隐藏边框" id="done" />
+            <input type="button" class="input1" value="重新开始" id="clear" />
+            <input type="button" class="input1" value="放大" id="bigger" />
+            <input type="button" class="input1" value="缩小" id="smaller" />
+            <select onchange="iconTable.numChange(this.value)">
+                <option value="16">16 * 16</option>
+                <option value="22" selected="selected">22 * 22</option>
+                <option value="32">32 * 32</option>
+                <option value="50">50 * 50</option>
+            </select>
+            <input type="button" class="input1" value="颜色信息" id="ColorInfo" />
+        </div>
+        <div id="main">
+            <p style="font-size:12px; text-align:left; width:80%; margin:0 auto;">说明:先点击调色板选取需要的颜色,然后您可点击表格设置颜色,或按CTRL键通过移动鼠标在画板上继续设置颜色.点击"颜色信息"按钮可获取已设置过的颜色值,并可在"还原图案"按钮里进行还原</p>
+            <div id="box">
+
+            </div>
+            <textarea id="HashInfo"></textarea>
+            <br />
+            <input type="button" class="input1" value="还原图案" id="SubmitColor" />
+        </div>
+        <input type="button" class="input1" value="生成图片" id="drawImg" onclick="drwaImg()" />
+    </div>
+
+
+</body>
+
+</html>
+<script src="pic.js" type="text/javascript">
+</script>
+<script src="dom-to-image.min.js" type="text/javascript">
+</script>
